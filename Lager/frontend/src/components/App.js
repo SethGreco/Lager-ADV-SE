@@ -1,15 +1,35 @@
-    import React from "react";
-    import ReactDOM from "react-dom";
-    import DataProvider from "./DataProvider";
-    import Table from "./Table";
-    import Form from "./Form";
+import React, {Component} from 'react';
+import ReactDOM from "react-dom";
+import Printable from "./Printable";
+import Home from "./Home"
+import EntryView from "./EntryView"
 
-    const App = () => (
-        <React.Fragment>
-      <DataProvider endpoint="api/project/"
-                    render={data => <Table data={data} />} />
-        <Form endpoint ="api/project" />
-        </React.Fragment>
-    );
-    const wrapper = document.getElementById("app");
-    wrapper ? ReactDOM.render(<App />, wrapper) : null;
+import {
+  Route,
+  NavLink,
+  HashRouter
+} from 'react-router-dom';
+
+
+const App = () => (
+  <React.Fragment>
+    <HashRouter>
+      <div>
+        <ul className="header">
+          <li><NavLink to="/">Home</NavLink></li>
+          <li><NavLink to="/Printable">Printable View</NavLink></li>
+          <li><NavLink to="/EntryView">Entry</NavLink></li>
+        </ul>
+        <div className="content">
+          <Route exact path="/" component={Home}/>
+          <Route path="/Printable" component={Printable}/>
+          <Route path="/EntryView" component={EntryView}/>
+        </div>
+      </div>
+    </HashRouter>
+  </React.Fragment>
+);
+
+
+const wrapper = document.getElementById("app");
+wrapper ? ReactDOM.render(<App/>, wrapper) : null;
