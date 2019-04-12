@@ -10,7 +10,7 @@ class Form extends Component {
     who: "",
     when: "",
     what: "",
-    how: "",
+    how: ""
   };
 
   handleChange = e => {
@@ -20,10 +20,10 @@ class Form extends Component {
   handleSubmit = e => {
     e.preventDefault();
     const {who, when, what, how} = this.state;
-    const project = {who, when, what, how};
+    const lead = {who, when, what, how};
     const conf = {
       method: "post",
-      body: JSON.stringify(project),
+      body: JSON.stringify(lead),
       headers: new Headers({"Content-Type": "application/json"})
     };
     fetch(this.props.endpoint, conf).then(response => console.log(response));
@@ -31,7 +31,7 @@ class Form extends Component {
 
 
   render() {
-    const {who, when, what, how} = this.state;
+    const {who, what, how} = this.state;
     return (
       <div className="column">
         <form onSubmit={this.handleSubmit}>
@@ -42,9 +42,9 @@ class Form extends Component {
               <input
                 className="input"
                 type="text"
-                name="name"
+                name="who"
                 onChange={this.handleChange}
-                value={name}
+                value={who}
                 required
               />
             </div>
@@ -56,36 +56,24 @@ class Form extends Component {
               <input
                 className="input"
                 type="text"
-                name="What"
+                name="what"
                 onChange={this.handleChange}
-                value={name}
+                value={what}
                 required
               />
             </div>
           </div>
 
-          <div className="field">
-            <label className="label">When</label>
-            <div className="control">
-              <input
-                className="input"
-                type="text"
-                name="time"
-                onChange={this.handleChange}
-                value={name}
-                required
-              />
-            </div>
-          </div>
+
           <div className="field">
             <label className="label">How</label>
             <div className="control">
               <input
                 className="input"
                 type="text"
-                name="How"
+                name="how"
                 onChange={this.handleChange}
-                value={name}
+                value={how}
                 required
               />
             </div>
@@ -94,6 +82,7 @@ class Form extends Component {
             <button type="submit" className="button is-info">
               Send message
             </button>
+            <button className="button is-primary"> Reset Form</button>
           </div>
         </form>
       </div>

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from developer.models import UserProfile, ProjectStatus
 
 from developer.serializers import UserSerializer, ProjectSerializer
-from rest_framework import generics
+from rest_framework import viewsets, generics
 # Create your views here.
 
 def home(request):
@@ -13,6 +13,7 @@ class UserListCreate (generics.ListCreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class =  UserSerializer
 
-class ProjectListCreate(generics.ListCreateAPIView):
-    queryset = ProjectStatus.objects.all()
+class ProjectListCreate(viewsets.ModelViewSet):
     serializer_class = ProjectSerializer
+    queryset = ProjectStatus.objects.all()
+

@@ -24,7 +24,7 @@ const Table = ({data}) =>
         ))}
         </tbody>
       </table>
-      <button> Button</button>
+
     </div>
   );
 Table.propTypes = {
