@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('developer.urls')),
     path('', include('frontend.urls')),
+
+
 ]
